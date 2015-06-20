@@ -730,7 +730,10 @@ class TetherClass {
       transcribe({top: true, left: true}, pos.page);
     }
 
-    if(!moved && this.element.parentNode.tagName !== 'BODY') {
+    let moveToRoot = typeof this.options.optimizations !== 'undefined' && 
+                            this.options.optimizations.moveToRoot !== false;
+                            
+    if(moveToRoot && !moved && this.element.parentNode.tagName !== 'BODY') {
       this.element.parentNode.removeChild(this.element);
       document.body.appendChild(this.element);
     }
